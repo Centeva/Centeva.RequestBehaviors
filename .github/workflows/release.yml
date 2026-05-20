@@ -33,7 +33,7 @@ jobs:
         run: dotnet test --configuration Release /p:Version=${GITHUB_REF_NAME#v}
 
       - name: Package
-        run: dotnet pack --configuration Release /p:Version=${GITHUB_REF_NAME#v} --output packages
+        run: dotnet pack --configuration Release /p:Version=${GITHUB_REF_NAME#v} --no-build --output packages
 
       - name: Upload packages as release assets
         run: gh release upload ${{ github.ref_name }} packages/*.nupkg packages/*.snupkg --clobber
