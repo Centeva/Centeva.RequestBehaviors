@@ -4,7 +4,7 @@ on:
     types: [published]
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -37,6 +37,11 @@ jobs:
 
       - name: Package
         run: dotnet pack --configuration Release /p:Version=${GITHUB_REF_NAME#v} --no-build --output packages
+
+      - name: Upload packages as release assets
+        run: gh release upload ${{ github.ref_name }} packages/*.nupkg packages/*.snupkg --clobber
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to GitHub Packages (pre-release only)
         if: github.event.release.prerelease
