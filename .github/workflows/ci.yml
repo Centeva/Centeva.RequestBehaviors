@@ -5,6 +5,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,8 +20,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.x
-        env:
-          DOTNET_INSTALL_DIR: '~/dotnet'
+        # Uncomment below for self-hosted runners without .NET pre-installed
+        # env:
+        #   DOTNET_INSTALL_DIR: '${{ runner.temp }}/dotnet'
 
       - name: Build
         run: dotnet build --configuration Release
