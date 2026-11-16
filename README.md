@@ -29,7 +29,7 @@ clean and reusable way that is not tied to any specific presentation layer
 
 ## Built With
 
-* [.NET 8](https://dot.net)
+* [.NET 10](https://dot.net)
 * [MediatR](https://mediatr.io/)
 * [Mediator.SourceGenerator](https://github.com/martinothamar/Mediator)
 * [FluentValidation](https://fluentvalidation.net/)
